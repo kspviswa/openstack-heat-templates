@@ -31,7 +31,15 @@
                     "user_data": "#!/bin/bash -xv\necho \"hello world\" &gt; /root/hello-world.txt\n"
                 }
             }
-        }
+        },
+                                  outputs: {
+			server_networks: {
+				description: "The networks of the deployed server",
+					value: { 
+						get_attr : [ "hello_world", "networks" ]
+					}
+				}	
+		}
     },
     "timeout_mins": 60
 }
