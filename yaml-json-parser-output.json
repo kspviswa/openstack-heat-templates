@@ -1,0 +1,56 @@
+{
+	"description": "A server",
+	"heat_template_version": "2013-05-23",
+	"outputs": {
+		"server_networks": {
+			"description": "The networks of the deployed server",
+			"value": {
+				"get_attr": [
+					"server",
+					"networks"
+				]
+			}
+		}
+	},
+	"parameters": {
+		"flavor": {
+			"description": "flavor used by the servers",
+			"type": "string"
+		},
+		"image": {
+			"description": "Image used for servers",
+			"type": "string"
+		},
+		"key_name": {
+			"description": "SSH key to connect to the servers",
+			"type": "string"
+		},
+		"network": {
+			"description": "Network used by the server",
+			"type": "string"
+		}
+	},
+	"resources": {
+		"server": {
+			"properties": {
+				"flavor": {
+					"get_param": "flavor"
+				},
+				"image": {
+					"get_param": "image"
+				},
+				"key_name": {
+					"get_param": "key_name"
+				},
+				"networks": [
+					{
+						"network": {
+							"get_param": "network"
+						}
+					}
+				]
+			},
+			"type": "OS::Nova::Server"
+		}
+	}
+}
