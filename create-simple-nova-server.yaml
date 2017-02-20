@@ -19,3 +19,7 @@ resources:
       networks:
       - network: {get_param: network}
     type: OS::Nova::Server
+outputs:
+  server_networks:
+    description: The networks of the deployed server
+    value: { get_attr: [server, networks] }
